@@ -1,2 +1,2 @@
 # MutualClouds
-CS320 Team Fidelity Project
+CS320 Team Mutual Project
