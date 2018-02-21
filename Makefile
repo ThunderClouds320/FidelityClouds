@@ -8,4 +8,4 @@ build:
 	docker rm ${DOCKER_CONTAINER_NAME}
 
 run:
-	docker run -it --rm --env-file .env ${DOCKER_IMAGE_NAME}
+	docker-compose run app
