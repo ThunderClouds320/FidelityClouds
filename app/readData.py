@@ -1,13 +1,13 @@
 import facebook
+from facepy import GraphAPI
 
-def process(access):
-  facebook_graph = facebook.GraphAPI(access)
+def process(oauth_access_token):
+  facebook_graph = GraphAPI(oauth_access_token)
 
   # Try to post something on the wall.
   try:
-    profile = facebook_graph.get_object('me')
-    args = {'fields': 'id,name,email,birthday,political,relationship_status,religion,posts', }
-    profile = facebook_graph.get_object('me', **args)
+
+    profile = facebook_graph.get('me/posts')
     print(profile)
   except facebook.GraphAPIError as e:
     print('Something went wrong:', e.type, e.message)
