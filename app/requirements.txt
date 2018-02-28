@@ -1,7 +1,5 @@
-facepy==1.0.9
-Django
-psycopg2
--e git://github.com/django-nonrel/django@nonrel-1.5#egg=django
--e git://github.com/django-nonrel/djangotoolbox#egg=djangotoolbox
--e git://github.com/django-nonrel/mongodb-engine#egg=django-mongodb-engine
-mongoengine
+facepy
+flask
+flask-restful
+pymongo
+Flask-PyMongo
