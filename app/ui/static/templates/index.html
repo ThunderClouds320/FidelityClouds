@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MutualClouds</title>
+
+    <link rel="shortcut icon" type="image/ico" href="{{ url_for('static', filename='img/thundercloud.ico') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/animate.css') }}">
+
+    <!-- Main.css (The main custom stylesheet) -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+
+    <script defer src="https://use.fontawesome.com/releases/v5.0.0/js/all.js"></script>
+  </head>
+  <body>
+
+  <script>
+//  window.fbAsyncInit = function() {
+//    FB.init({
+//      appId      : '591063841234948',
+//      cookie     : true,
+//      xfbml      : true,
+//      version    : 'v2.12'
+//    });
+//
+////    document.getElementById('centerdiv').classList.add('animated');
+////    document.getElementById('centerdiv').classList.add('bounceIn');
+//    FB.AppEvents.logPageView();
+//    console.log("HEHFEOHFE");
+//    FB.getLoginStatus(response => {
+//        console.log("HELLO");
+//            console.dir(response);
+//        });
+//
+//  };
+//
+//  (function(d, s, id){
+//     var js, fjs = d.getElementsByTagName(s)[0];
+//     if (d.getElementById(id)) {return;}
+//     js = d.createElement(s); js.id = id;
+//     js.src = "https://connect.facebook.net/en_US/sdk.js";
+//     fjs.parentNode.insertBefore(js, fjs);
+//
+//   }(document, 'script', 'facebook-jssdk'));
+  </script>
+
+  <div id="app">
+    <!-- React components get mounted here -->
+  </div>
+
+  <!-- Load jQuery -->
+  <script src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}" defer></script>
+
+  <!-- Main Entry Point -->
+  <script src="{{ url_for('static', filename='js/index.js') }}" defer></script>
+
+
+
+  </body>
+
+</html>

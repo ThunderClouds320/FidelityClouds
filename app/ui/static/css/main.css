@@ -1,0 +1,27 @@
+/** Main CSS Styles for MutualClouds **/
+
+html, body {
+    background-color: #e5e5e5;
+}
+
+nav {
+    box-shadow: 1px 1px 2px grey;
+}
+
+aside {
+    margin-left: 10px;
+}
+
+#centerdiv {
+    padding-top: 250px;
+    text-align: center;
+}
+
+.container {
+    max-width: 70%;
+    margin-right: 15%;
+}
+
+.hide {
+    display: none;
+}
