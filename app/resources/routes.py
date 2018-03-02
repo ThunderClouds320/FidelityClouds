@@ -1,10 +1,10 @@
-'''
+"""
 routes.py
 
 This file hosts the routes that will be used by the flask object
 
 @authors: CS320
-'''
+"""
 
 from flask import render_template
 from flask_restful import Api

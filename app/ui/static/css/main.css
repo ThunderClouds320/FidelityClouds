@@ -25,3 +25,9 @@ aside {
 .hide {
     display: none;
 }
+
+.menu-list a.is-active {
+    background-color: #00d1b2;
+    -webkit-transition: background-color 0.5s; /* Safari */
+    transition: background-color 0.5s;
+}

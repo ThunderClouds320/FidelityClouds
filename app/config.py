@@ -1,10 +1,10 @@
-'''
+"""
 config.py
 
 This file stores global configuration settings for the flask server
 @authors: CS320
 
-'''
+"""
 
 STATIC_FOLDER = 'ui/static'
 TEMPLATE_FOLDER = 'ui/static/templates'

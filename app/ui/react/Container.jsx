@@ -13,9 +13,11 @@ class Container extends React.Component {
 
 		// Bind our class methods to the 'this' instance object
 		this.onLoginUpdated = this.onLoginUpdated.bind(this);
+		this.onTabClicked = this.onTabClicked.bind(this);
 
 		// State template
-		this.state = {loggedIn: undefined,
+		this.state = {selectedTab: 0,
+			          loggedIn: undefined,
 			          loginData: {
 			             name: "Loading...",
 			             accessToken: "Loading..."
@@ -28,7 +30,7 @@ class Container extends React.Component {
 			<div id="container">
 				<Navbar />
 				<section className="main-content columns is-fullheight">
-				    <Sidenav />
+				    <Sidenav onTabClicked={this.onTabClicked} />
 				    <Body loggedIn={this.state.loggedIn} loginData={this.state.loginData} onLoginUpdated={this.onLoginUpdated} />
 				</section>
 			</div>
@@ -43,6 +45,20 @@ class Container extends React.Component {
 	onLoginUpdated(data) {
 		console.log(data);
 		this.setState({loggedIn: true, loginData: data});
+	}
+
+    /**
+	 * Callback function to be executed when a tab is selected on the Sidenav
+	 *
+     * @param tabNumber The selected tab number
+     */
+	onTabClicked(tabNumber) {
+		// Clear all previously selected tabs
+		$(`[id^='tab-']`).removeClass("is-active");
+
+		// Set the "active" class on the clicked tab
+		$(`#tab-${tabNumber}`).addClass("is-active");
+		this.setState({selectedTab: tabNumber});
 	}
 }
 

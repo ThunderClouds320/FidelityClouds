@@ -1,10 +1,10 @@
-'''
+"""
 app.py
 
 This file hosts and creates the flask object
 
 @authors: CS320
-'''
+"""
 
 from flask import Flask
 

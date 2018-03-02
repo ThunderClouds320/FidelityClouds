@@ -1,4 +1,4 @@
-'''
+"""
 server.py
 
 This file acts as the main entry point for running the flask server
@@ -7,7 +7,7 @@ This file acts as the main entry point for running the flask server
  /    \| | | | __| | | |/ _` | |  / /  | |/ _ \| | | |/ _` / __|
 / /\/\ \ |_| | |_| |_| | (_| | | / /___| | (_) | |_| | (_| \__ \
 \/    \/\__,_|\__|\__,_|\__,_|_| \____/|_|\___/ \__,_|\__,_|___/
-'''
+"""
 
 # TODO: Fix bad naming :P
 from app import app
