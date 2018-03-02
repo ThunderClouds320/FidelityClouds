@@ -7,6 +7,7 @@ build:
 	docker build -t ${DOCKER_IMAGE_NAME} .
 	docker create --name=${DOCKER_CONTAINER_NAME} ${DOCKER_CONTAINER_NAME}:latest
 	docker rm ${DOCKER_CONTAINER_NAME}
+	cd app/ui; npm run build
 
 # Run the services associated with the Django application
 run:
