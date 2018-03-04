@@ -1,12 +1,19 @@
-'''
-@authors: CS320
-              _               _     ___ _                 _
-  /\/\  _   _| |_ _   _  __ _| |   / __\ | ___  _   _  __| |___
- /    \| | | | __| | | |/ _` | |  / /  | |/ _ \| | | |/ _` / __|
-/ /\/\ \ |_| | |_| |_| | (_| | | / /___| | (_) | |_| | (_| \__ \
-\/    \/\__,_|\__|\__,_|\__,_|_| \____/|_|\___/ \__,_|\__,_|___/
-'''
+"""
+app.py
 
-# Main entry point
-if __name__ == "__main__":
-    print("Now running: Mutual Clouds!")
+This file hosts and creates the flask object
+
+@authors: CS320
+"""
+
+from flask import Flask
+
+from config import STATIC_FOLDER, TEMPLATE_FOLDER
+
+app = Flask(__name__, static_folder=STATIC_FOLDER, template_folder=TEMPLATE_FOLDER)
+
+# Import our API resources after we initialize the flask object
+from resources.routes import *
+
+
+
