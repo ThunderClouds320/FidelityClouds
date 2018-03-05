@@ -25,8 +25,6 @@ class User(Resource):
     # TODO: Return a response containig Facepy data
     def get(self, accessToken=None):
         facebook_graph = GraphAPI(accessToken)
-
-  # Try to post something on the wall.
         try:
 
             response = facebook_graph.get('me/name')
