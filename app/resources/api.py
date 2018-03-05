@@ -9,7 +9,7 @@ Contains the API routes for our flask server
 from flask_restful import Resource
 from flask import request, jsonify
 
-from db import mongo
+#from db import mongo
 
 class User(Resource):
     """
@@ -23,9 +23,16 @@ class User(Resource):
     """
 
     # TODO: Return a response containig Facepy data
-    def get(self, userid=None):
-        from facepy import GraphAPI
+    def get(self, accessToken=None):
+        facebook_graph = GraphAPI(accessToken)
 
+  # Try to post something on the wall.
+        try:
+
+            response = facebook_graph.get('me/name')
+            print(response)
+        except facebook.GraphAPIError as e:
+            print('Something went wrong:', e.type, e.message)
         return jsonify({'response': [], 'status': 200})
 
     # TODO:

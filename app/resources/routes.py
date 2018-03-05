@@ -19,4 +19,6 @@ api = Api(app)
 def index():
     return render_template("index.html")
 
-api.add_resource(User, '/api/user/<string:userid>', '/api/user')
+api.add_resource(User, '/api/user/<string:accessToken>', '/api/user')
+	
+
