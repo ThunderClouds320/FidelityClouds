@@ -21,7 +21,7 @@ ADD app/ /app
 WORKDIR /app
 
 # Copy our bundled jsx files from the first image into this one
-COPY --from=react_bundle /app/ui/static/js/index.js ui/static/js
+COPY --from=react_bundle /app/ui/static/js/index.js ui/static/js/
 
 # Install all python packages listed in our requirements file
 RUN pip install -r requirements.txt
