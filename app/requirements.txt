@@ -1,1 +1,5 @@
-facepy==1.0.9
+facepy
+flask
+flask-restful
+pymongo
+Flask-PyMongo

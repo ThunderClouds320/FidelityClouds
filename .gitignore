@@ -1,2 +1,5 @@
 .idea/
 *.pyc
+app/ui/node_modules
+app/ui/static/js/index.js
+npm-debug.log
