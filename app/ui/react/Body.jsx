@@ -24,7 +24,7 @@ class Body extends React.Component {
 			                    <div className={"content fb-content " + fbClass}>
                                   <Facebook onLoginUpdated={this.props.onLoginUpdated} />
                                 </div>
-		                      </div>
+		                      </div>;
 
 
         // If we are logged in, display our name, profile picture, and userID
