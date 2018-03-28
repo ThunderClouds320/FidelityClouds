@@ -23,8 +23,11 @@ class User(Resource):
     """
 
     # TODO: Return a response containig Facepy data
-    def get(self, userid=None):
+    def get(self, authtoken=None):
         from facepy import GraphAPI
+
+        if not authtoken:
+            return jsonify({'response': 'Missing auth token', 'status': 400})
 
         return jsonify({'response': [], 'status': 200})
 
