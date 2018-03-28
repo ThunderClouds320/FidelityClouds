@@ -16,7 +16,7 @@ class Body extends React.Component {
         const userID = this.props.loginData.userID;
 
         // Hide the facebook button until we know whether we are logged in or not
-        const fbClass = this.props.loggedIn === false ? '' : 'hide';
+        const fbClass = this.props.loggedIn === undefined ? '' : 'hide';
 
         // Set default values for the home card content until we get data from Facebook
         let homeHeaderContent = <p className="card-header-title">Loading... </p>;
