@@ -44,11 +44,14 @@ class User(Resource):
                                access_token=access,
                                access_token_secret=access_secret)
 
-            # Fetch a list of tweets (limit to 20) from the user with the provided handle
+            # Fetch a list of tweets from the user with the provided handle
             tweet_iterator = ts.search_tweets_iterable(user_profile)
-            last_20 = list(itertools.islice(tweet_iterator, 20))
 
-            return jsonify({'response': last_20, 'status': 200})
+            # By default, we fetch only 20 tweets unless a query parameter is specified
+            num_tweets = int(request.args.get('numTweets', 20))
+            resolved_tweets = list(itertools.islice(tweet_iterator, num_tweets))
+
+            return jsonify({'response': resolved_tweets, 'status': 200})
 
         except TwitterSearchException as e:
             return jsonify({'response': [],

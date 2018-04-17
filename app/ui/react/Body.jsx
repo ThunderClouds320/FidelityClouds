@@ -34,7 +34,14 @@ class Body extends React.Component {
 	    return (
 	        <ul>
                 {this.props.twitter.tweets.map(tweet =>
-                    <Tweet key={tweet['id']} tweet={tweet} />
+                    <div key={tweet[0]['id']} className="columns">
+                        <div className="column">
+                            <Tweet tweet={tweet[0]} />
+                        </div>
+                        <div className="column">
+                            <Tweet tweet={tweet[1]} />
+                        </div>
+                    </div>
                 )}
             </ul>
 

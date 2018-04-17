@@ -69,13 +69,29 @@ class Container extends React.Component {
     /**
      * Fetches a list of tweets made by a user with the provided handle
      *
-     * @param handle (string): The handle of a user to fetch tweets from
+     * @param handle {string}: The handle of a user to fetch tweets from
+     * @param numTweets {number}: The number of tweets to fetch (if undefined, results to 20)
      */
-    fetchTweets(handle) {
+    fetchTweets(handle, numTweets) {
+
+        // Clear the previous tweets
+        this.setState({twitter: {handle: handle,
+                                 tweets: []}});
+
+        // Show progress bar when request is sent
+        $('#progress').removeClass('hide');
+
+        let urlString = `/api/user/${handle}`;
+        urlString = numTweets ? urlString + `?numTweets=${numTweets}` : urlString;
+
         console.log("Fetching tweets...");
-        $.get(`/api/user/${handle}`, (data) => {
+
+        $.get(urlString, (data) => {
             const statusCode = data['status'];
             console.log("Found tweets...");
+
+            // Hide the progress bar after data comes back
+            $('#progress').addClass('hide');
 
             if (statusCode != 200) {
                 swal(
@@ -84,8 +100,19 @@ class Container extends React.Component {
                   'error'
                 )
             } else {
+
+                // Partition the tweets
+
+                function chunkArrayInGroups(arr, size) {
+                    let myArray = [];
+                    for(let i = 0; i < arr.length; i += size) {
+                        myArray.push(arr.slice(i, i+size));
+                    }
+                    return myArray;
+                }
+
                 this.setState({twitter: {handle: handle,
-                                         tweets: data['response']}});
+                                         tweets: chunkArrayInGroups(data['response'], 2)}});
                 console.log("state updated!");
             }
 
