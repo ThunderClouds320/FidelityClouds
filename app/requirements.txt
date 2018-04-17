@@ -1,4 +1,4 @@
-facepy
+TwitterSearch
 flask
 flask-restful
 pymongo

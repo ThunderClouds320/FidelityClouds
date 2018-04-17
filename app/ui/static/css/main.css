@@ -30,3 +30,46 @@ aside {
     -webkit-transition: background-color 0.5s; /* Safari */
     transition: background-color 0.5s;
 }
+
+#handle-input {
+    width: 250px;
+}
+
+.button {
+    margin-left: 10px;
+    background-color: #00d1b2;
+    color: white;
+}
+
+.button:hover {
+    border: solid 1px #00d1b2;
+    outline: none;
+    color: white;
+    background-color: #0ec7ac;
+}
+
+.button:focus {
+    border: solid 1px #00d1b2;
+    outline: none;
+    color: white;
+    background-color: #00d1b2;
+}
+
+.button:active {
+    border: solid 1px #00d1b2;
+    outline: none;
+    color: white;
+    background-color: #04af95;
+
+}
+
+h4.handle-prefix {
+    display: inline;
+    line-height: 2;
+    margin-right: 5px;
+}
+
+.card-content {
+    max-height: 500px;
+    overflow-y: scroll;
+}

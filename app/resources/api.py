@@ -22,14 +22,38 @@ class User(Resource):
         DELETE
     """
 
-    # TODO: Return a response containig Facepy data
-    def get(self, authtoken=None):
-        from facepy import GraphAPI
+    def get(self, user_handle=None):
+        from TwitterSearch import TwitterSearch, TwitterUserOrder, TwitterSearchException
 
-        if not authtoken:
-            return jsonify({'response': 'Missing auth token', 'status': 400})
+        if user_handle is None:
+            return jsonify({'response': [], 'status': 400, 'message': 'No handle provided'})
 
-        return jsonify({'response': [], 'status': 200})
+        try:
+            import itertools
+
+            user_profile = TwitterUserOrder(user_handle)
+
+            # Hardcode our API keys for optimal security
+            consumer = 'CedAugFXME85jW5MRraKTJFgO'
+            consumer_secret = 'RjLOp02iZqQnGM5cOt4bBeFjFHtFyVW09NSH14rVEyPouFvWLs'
+            access = '378294925-zdTFn1Gf8rcBzv6gshfjfONZG9ZSc8QFUlZd1YO8'
+            access_secret = '0MV9lR9kFdoUkLnKoWgdZCl74vunMAoCR7INC7pQYrSfW'
+
+            ts = TwitterSearch(consumer_key=consumer,
+                               consumer_secret=consumer_secret,
+                               access_token=access,
+                               access_token_secret=access_secret)
+
+            # Fetch a list of tweets (limit to 20) from the user with the provided handle
+            tweet_iterator = ts.search_tweets_iterable(user_profile)
+            last_20 = list(itertools.islice(tweet_iterator, 20))
+
+            return jsonify({'response': last_20, 'status': 200})
+
+        except TwitterSearchException as e:
+            return jsonify({'response': [],
+                            'status': 404,
+                            'message': 'There was a problem fetching the data for {}: {}'.format(user_handle, e)})
 
     # TODO:
     def post(self):
