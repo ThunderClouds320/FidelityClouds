@@ -74,9 +74,11 @@ class Container extends React.Component {
      */
     fetchTweets(handle, numTweets) {
 
+
+
         // Clear the previous tweets
-        this.setState({twitter: {handle: handle,
-                                 tweets: []}});
+        this.setState({twitter: {handle: handle, tweets: []}});
+        $('.card-content').animate({height: 220}, 200);
 
         // Show progress bar when request is sent
         $('#progress').removeClass('hide');
@@ -114,6 +116,8 @@ class Container extends React.Component {
                 this.setState({twitter: {handle: handle,
                                          tweets: chunkArrayInGroups(data['response'], 2)}});
                 console.log("state updated!");
+
+                $('.card-content').animate({height: 500}, 200);
             }
 
         })
