@@ -1,5 +1,5 @@
 import React from 'react';
-import swal from 'sweetalert2'
+import swal from 'sweetalert2';
 
 import Navbar from './Navbar.jsx';
 import Sidenav from './Sidenav.jsx';
