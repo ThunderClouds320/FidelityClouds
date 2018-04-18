@@ -11,8 +11,8 @@ class Card extends React.Component {
         this.dropdownClicked = this.dropdownClicked.bind(this);
 
         this.state = {dropdown: false,
-                      numberLabel: "Number of Tweets",
-                      numTweets: undefined};
+                      numberLabel: "20 Tweets",
+                      numTweets: 20};
     }
 
     render() {
