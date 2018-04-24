@@ -23,11 +23,14 @@ WORKDIR /app
 # Copy our bundled jsx files from the first image into this one
 COPY --from=react_bundle /app/ui/static/js/index.js ui/static/js/
 
+RUN pip install -U flask-cors
+
 # Install all python packages listed in our requirements file
 RUN pip install -r requirements.txt
 
-# Expose port 5000 of the container to the host (this computer)
+# Expose port 5000 & 5005 of the container to the host (this computer)
 EXPOSE 5000
+EXPOSE 5005
 
 # Run the python application
-CMD ["/usr/local/bin/python", "server.py"]
+#CMD ["/usr/local/bin/python", "server.py"]

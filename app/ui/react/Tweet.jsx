@@ -10,9 +10,10 @@ class Tweet extends React.Component {
 
     render() {
         const tweet = this.props.tweet;
+        const onTweetClicked = this.props.onTweetClicked || function () {console.log("Tweet clicked")};
 
         return (
-                <div className="tweet-container">
+                <div className="tweet-container" onClick={() => onTweetClicked(tweet['text'])}>
                     <div className="columns">
                         <div className="column is-narrow tweet-icon">
                             <h5><i className="far fa-comment"></i></h5>

@@ -6,7 +6,7 @@ This file hosts and creates the flask object
 @authors: CS320
 """
 
-from flask import Flask
+from flask import Flask, render_template
 
 from config import STATIC_FOLDER, TEMPLATE_FOLDER
 

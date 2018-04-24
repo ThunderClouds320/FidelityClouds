@@ -16,6 +16,7 @@ class Container extends React.Component {
 		this.onTabClicked = this.onTabClicked.bind(this);
 		this.onHandleChanged = this.onHandleChanged.bind(this);
 		this.fetchTweets = this.fetchTweets.bind(this);
+		this.analyzeTweet = this.analyzeTweet.bind(this);
 
 		// State template
 		this.state = {selectedTab: 0,
@@ -34,7 +35,9 @@ class Container extends React.Component {
 				    <Sidenav onTabClicked={this.onTabClicked} />
 				    <Body twitter={this.state.twitter}
                           onHandleChanged={this.onHandleChanged}
-                          fetchTweets={this.fetchTweets}/>
+                          fetchTweets={this.fetchTweets}
+                          selectedTab={this.state.selectedTab}
+                          onTweetClicked={this.analyzeTweet} />
 				</section>
 			</div>
 		)
@@ -51,6 +54,13 @@ class Container extends React.Component {
 
 		// Set the "active" class on the clicked tab
 		$(`#tab-${tabNumber}`).addClass("is-active");
+
+		if (tabNumber == 1 || tabNumber == 2) {
+		    $('.card-content').animate({height: 500}, 200);
+        } else {
+		    $('.card-content').animate({height: 220}, 200);
+        }
+
 		this.setState({selectedTab: tabNumber});
 	}
 
@@ -73,8 +83,6 @@ class Container extends React.Component {
      * @param numTweets {number}: The number of tweets to fetch (if undefined, results to 20)
      */
     fetchTweets(handle, numTweets) {
-
-
 
         // Clear the previous tweets
         this.setState({twitter: {handle: handle, tweets: []}});
@@ -117,10 +125,28 @@ class Container extends React.Component {
                                          tweets: chunkArrayInGroups(data['response'], 2)}});
                 console.log("state updated!");
 
-                $('.card-content').animate({height: 500}, 200);
+
             }
 
         })
+    }
+
+    /**
+     * Runs a microservice analyzer over a given piece of text data
+     * @param text: The text contained in the tweet
+     */
+    analyzeTweet(text) {
+        let urlString = "http://localhost:5000/1.0/analyze/text";
+
+        $.ajax({
+          method: "POST",
+          url: urlString,
+          data: JSON.stringify(text),
+          dataType: 'json',
+          contentType: 'application/json'
+        }).done(function(data) {
+            console.log(data, "received data");
+        });
     }
 }
 

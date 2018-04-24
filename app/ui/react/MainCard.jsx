@@ -1,9 +1,9 @@
 import React from 'react';
 
 /**
- * A card panel on the DOM showing user data
+ * A card panel on the DOM showing the initial tweet data
  */
-class Card extends React.Component {
+class MainCard extends React.Component {
     constructor(props) {
         super(props);
 
@@ -65,9 +65,9 @@ class Card extends React.Component {
                               </div>
                               <input className="button" type="submit" value="Begin" onClick={() => fetchTweets(handle, this.state.numTweets)} />
                           </div>
-                          <div className="tweets">
-                              {this.props.tweets}
-                          </div>
+                          {/*<div className="tweets">*/}
+                              {/*{this.props.tweets}*/}
+                          {/*</div>*/}
                           <div id="progress" className="hide">
                               <progress className="progress is-primary" max="100" />
                           </div>
@@ -99,4 +99,4 @@ class Card extends React.Component {
     }
 }
 
-export default Card;
+export default MainCard;

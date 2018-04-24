@@ -1,0 +1,74 @@
+swagger: "2.0"
+
+info:
+  version: 1.0.0
+  title: CLV Service
+  license:
+    name: MIT
+
+basePath: /1.0
+
+schemes:
+  - http
+consumes:
+  - application/json
+produces:
+  - application/json
+
+paths:
+  '/analyze/text':
+    post:
+      operationId: api.clv.analyzer.text.analyze
+      parameters:
+        - name: post
+          in: body
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 'Post Analyzed'
+          schema:
+            $ref: '#/definitions/Result'
+
+  /analyze:
+    post:
+      operationId: api.clv.analyzer.text.analyze_all
+      parameters:
+        - name: posts
+          in: body
+          required: true
+          schema:
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: 'Posts Analyzed'
+          schema:
+            $ref: '#/definitions/Result'
+
+definitions:
+  Result:
+    type: object
+    required:
+      - time
+      - text
+      - keywords
+      - confidences
+      - clv
+    properties:
+      time:
+        type: number
+      text:
+        type: string
+      keywords:
+        type: array
+        items:
+          type: string
+      confidences:
+        type: array
+        items:
+          type: number
+      clv:
+        type: number

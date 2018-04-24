@@ -9,7 +9,7 @@ Contains the API routes for our flask server
 from flask_restful import Resource
 from flask import request, jsonify
 
-from db import mongo
+
 
 class User(Resource):
     """
