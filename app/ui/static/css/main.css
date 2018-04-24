@@ -128,3 +128,12 @@ h4.handle-prefix {
     transition: all 0.18s ease;
     transform: scale(1.03);
 }
+
+.body-label {
+    text-align: center;
+}
+
+.body-label h4 {
+    position: relative;
+    bottom: -40px;
+}

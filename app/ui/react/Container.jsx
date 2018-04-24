@@ -55,7 +55,8 @@ class Container extends React.Component {
 		// Set the "active" class on the clicked tab
 		$(`#tab-${tabNumber}`).addClass("is-active");
 
-		if (tabNumber == 1 || tabNumber == 2) {
+		// Open the card panel if we are viewing the tweets
+		if (tabNumber >= 1 && tabNumber <= 3 && this.state.twitter.tweets.length > 0) {
 		    $('.card-content').animate({height: 500}, 200);
         } else {
 		    $('.card-content').animate({height: 220}, 200);
@@ -90,6 +91,7 @@ class Container extends React.Component {
 
         // Show progress bar when request is sent
         $('#progress').removeClass('hide');
+        $('.body-label h4').addClass('hide');
 
         let urlString = `/api/user/${handle}`;
         urlString = numTweets ? urlString + `?numTweets=${numTweets}` : urlString;
@@ -102,6 +104,7 @@ class Container extends React.Component {
 
             // Hide the progress bar after data comes back
             $('#progress').addClass('hide');
+            $('.body-label h4').removeClass('hide');
 
             if (statusCode != 200) {
                 swal(
@@ -145,7 +148,12 @@ class Container extends React.Component {
           dataType: 'json',
           contentType: 'application/json'
         }).done(function(data) {
-            console.log(data, "received data");
+            const keywords = data['keywords'].length > 0 ? `<h2>The following keywords were found: ${data['keywords']}</h2>` : `<h2>There were no interesting keywords found.</h2>`
+            swal(
+                  'Done!',
+                  `<h2>The CLV for this tweet is: ${data['clv']}</h2><br />${keywords}`,
+                  'success'
+                );
         });
     }
 }

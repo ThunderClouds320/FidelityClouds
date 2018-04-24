@@ -24,6 +24,9 @@ class MainCard extends React.Component {
 
         const dropdownClass = this.state.dropdown ? 'is-active' : '';
 
+        const numTweets = this.props.twitter.tweets.length;
+        const tweetStatusLabel =`${numTweets * 2} tweets loaded.`;
+
         return (
             <div className="column">
                 <div className="section">
@@ -63,11 +66,11 @@ class MainCard extends React.Component {
                                     </div>
                                   </div>
                               </div>
-                              <input className="button" type="submit" value="Begin" onClick={() => fetchTweets(handle, this.state.numTweets)} />
+                              <input className="button" type="submit" value="Fetch" onClick={() => fetchTweets(handle, this.state.numTweets)} />
                           </div>
-                          {/*<div className="tweets">*/}
-                              {/*{this.props.tweets}*/}
-                          {/*</div>*/}
+                          <div className="body-label">
+                              <h4>{tweetStatusLabel}</h4>
+                          </div>
                           <div id="progress" className="hide">
                               <progress className="progress is-primary" max="100" />
                           </div>

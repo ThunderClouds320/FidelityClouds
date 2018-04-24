@@ -12,6 +12,10 @@ class Tweet extends React.Component {
         const tweet = this.props.tweet;
         const onTweetClicked = this.props.onTweetClicked || function () {console.log("Tweet clicked")};
 
+        if (tweet === undefined) {
+            return (<div></div>)
+        }
+
         return (
                 <div className="tweet-container" onClick={() => onTweetClicked(tweet['text'])}>
                     <div className="columns">
