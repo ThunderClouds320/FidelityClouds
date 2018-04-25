@@ -35,7 +35,7 @@ def configure(binder: Binder) -> Binder:
 if __name__ == '__main__':
     from flask_cors import CORS
 
-    app = connexion.App(__name__, specification_dir='resources/swagger/')
+    app = connexion.App(__name__, specification_dir='api/swagger/')
 
     app.add_api('api_config.yaml', resolver=RestyResolver('api'))
     FlaskInjector(app=app.app, modules=[configure])

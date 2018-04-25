@@ -13,7 +13,7 @@ from config import STATIC_FOLDER, TEMPLATE_FOLDER
 app = Flask(__name__, static_folder=STATIC_FOLDER, template_folder=TEMPLATE_FOLDER)
 
 # Import our API resources after we initialize the flask object
-from resources.routes import *
+from api.routes import *
 
 
 

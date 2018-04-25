@@ -1,14 +1,8 @@
-"""
-api.py
+from flask_restful import Api, Resource
+from flask import request, jsonify, render_template
+from app import app
 
-Contains the API routes for our flask server
-
-@authors: CS320
-"""
-
-from flask_restful import Resource
-from flask import request, jsonify
-
+api = Api(app)
 
 
 class User(Resource):
@@ -17,9 +11,6 @@ class User(Resource):
 
     Request Types:
         GET
-        POST
-        PUT
-        DELETE
     """
 
     def get(self, user_handle=None):
@@ -58,14 +49,9 @@ class User(Resource):
                             'status': 404,
                             'message': 'There was a problem fetching the data for {}: {}'.format(user_handle, e)})
 
-    # TODO:
-    def post(self):
-        return jsonify({'response': [], 'status': 200})
+# Index page
+@app.route('/')
+def index():
+    return render_template("index.html")
 
-    # TODO:
-    def put(self):
-        return jsonify({'response': [], 'status': 200})
-
-    # TODO:
-    def delete(self):
-        return jsonify({'response': [], 'status': 200})
+api.add_resource(User, '/api/user/<string:user_handle>', '/api/user')
