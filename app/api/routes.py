@@ -54,4 +54,4 @@ class User(Resource):
 def index():
     return render_template("index.html")
 
-api.add_resource(User, '/api/user/<string:user_handle>', '/api/user')
+api.add_resource(User, '/api/user/<string:user_handle>', '/api/user/')
