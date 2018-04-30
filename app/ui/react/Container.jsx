@@ -148,6 +148,7 @@ class Container extends React.Component {
           dataType: 'json',
           contentType: 'application/json'
         }).done(function(data) {
+            console.log(data);
             const keywords = data['keywords'].length > 0 ? `<h2>The following keywords were found: ${data['keywords']}</h2>` : `<h2>There were no interesting keywords found.</h2>`
             swal(
                   'Done!',
