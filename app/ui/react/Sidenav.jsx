@@ -37,9 +37,9 @@ class Sidenav extends React.Component {
                 </ul>
               </li>
               <li>
-                <a href="#" id="tab-4" onClick={() => this.props.onTabClicked(4)}>
-                  <span className="icon"><i className="fa fa-info"></i></span> Lifetime Value
-                </a>
+                {/*<a href="#" id="tab-4" onClick={() => this.props.onTabClicked(4)}>*/}
+                  {/*<span className="icon"><i className="fa fa-info"></i></span> Lifetime Value*/}
+                {/*</a>*/}
               </li>
             </ul>
             </aside>
