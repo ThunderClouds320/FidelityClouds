@@ -22,24 +22,13 @@ class Sidenav extends React.Component {
                 <a href="#" id="tab-1" onClick={() => this.props.onTabClicked(1)}>
                   <span className="icon"><i className="fa fa-table"></i></span> Microservices
                 </a>
-
                 <ul>
                   <li>
                     <a href="#" id="tab-2" onClick={() => this.props.onTabClicked(2)}>
                       <span className="icon is-small"><i className="fa fa-link"></i></span> If-Else Engine
                     </a>
                   </li>
-                  <li>
-                    {/*<a href="#" id="tab-3" onClick={() => this.props.onTabClicked(3)}>*/}
-                      {/*<span className="icon is-small"><i className="fa fa-link"></i></span> Switch-em*/}
-                    {/*</a>*/}
-                  </li>
                 </ul>
-              </li>
-              <li>
-                {/*<a href="#" id="tab-4" onClick={() => this.props.onTabClicked(4)}>*/}
-                  {/*<span className="icon"><i className="fa fa-info"></i></span> Lifetime Value*/}
-                {/*</a>*/}
               </li>
             </ul>
             </aside>

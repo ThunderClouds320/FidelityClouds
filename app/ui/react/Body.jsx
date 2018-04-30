@@ -14,57 +14,44 @@ class Body extends React.Component {
 
 	render() {
 
-		// Default
+		// Default card header values
         let tweetHeaderLabel = "Enter a Twitter Handle";
         let ifElseHeaderLabel = "If-Else Engine";
-        let engineBodyLabel = this.props.twitter.tweets.length == 0 ? "No tweets yet. Enter a handle to get started!" : "Select a tweet to analyze:";
-        const currentTab = this.props.selectedTab;
-        const indexTweets = this.generateIndexTweetList();
-        const microTweets = this.generateMicroTweetList();
 
+        let ifElseBodyLabel = "No tweets yet. Enter a handle to get started!";
+
+        // Set the microservice engine label accordingly
+        if (this.props.twitter.tweets.length === 0) {
+            ifElseBodyLabel = "Select a tweet to analyze:";
+        }
+
+        const currentTab = this.props.selectedTab;
+        const tweetList = this.generateTweetList();
+
+        /* Conditionally render the cards depending on which tab is selected */
 		return (
 			<div className="container">
               <div className={currentTab != 0 ? "hide" : ""}>
 			      <MainCard twitter={this.props.twitter}
-                        headerLabel={tweetHeaderLabel}
-                        onHandleChanged={this.props.onHandleChanged}
-                        fetchTweets={this.props.fetchTweets}
-                        tweets={indexTweets}/>
+                            headerLabel={tweetHeaderLabel}
+                            onHandleChanged={this.props.onHandleChanged}
+                            fetchTweets={this.props.fetchTweets} />
               </div>
               <div className={currentTab != 1 && currentTab != 2 ? "hide" : ""}>
                   <IfElseCard headerLabel={ifElseHeaderLabel}
-                              bodyLabel={engineBodyLabel}
-                              tweets={microTweets} />
+                              bodyLabel={ifElseBodyLabel}
+                              tweets={tweetList} />
               </div>
 			</div>
 		)
 	}
 
     /**
-     * Generates a list of tweet components to be mounted on index page
-     */
-	generateIndexTweetList() {
-	    return (
-	        <ul>
-                {this.props.twitter.tweets.map(tweet =>
-                    <div key={tweet[0]['id']} className="columns">
-                        <div className="column">
-                            <Tweet tweet={tweet[0]} />
-                        </div>
-                        <div className="column">
-                            <Tweet tweet={tweet[1]} />
-                        </div>
-                    </div>
-                )}
-            </ul>
-
-        )
-    }
-
-    /**
      * Generates a list of tweet components to be mounted on the microservice page
+     *
+     * @returns {HTML}: HTML containing a `ul` element, with at most two tweets in each row
      */
-	generateMicroTweetList() {
+	generateTweetList() {
 	    const onClicked = this.props.onTweetClicked;
 
 	    return (

@@ -12,6 +12,7 @@ class Tweet extends React.Component {
         const tweet = this.props.tweet;
         const onTweetClicked = this.props.onTweetClicked || function () {console.log("Tweet clicked")};
 
+        // Don't attempt to render the tweet with nonexistent properties
         if (tweet === undefined) {
             return (<div></div>)
         }
