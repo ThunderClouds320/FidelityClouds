@@ -5,12 +5,25 @@ services:
     image: mongo:3.0.2
     ports:
         - "27017:27017"
-  web:
-    image: mutual-clouds
+  api:
+#    image: mutual-clouds
+    build: .
+    command: ["/usr/local/bin/python", "connexion_api.py"]
     volumes:
       - ./app:/app
     ports:
       - "5000:5000"
+    depends_on:
+      - db
+    links:
+      - db
+  web:
+    build: .
+    command: ["/usr/local/bin/python", "server.py"]
+    volumes:
+      - ./app:/app
+    ports:
+      - "5005:5005"
     depends_on:
       - db
     links:

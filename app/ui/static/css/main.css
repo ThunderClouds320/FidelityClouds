@@ -30,3 +30,110 @@ aside {
     -webkit-transition: background-color 0.5s; /* Safari */
     transition: background-color 0.5s;
 }
+
+#handle-input {
+    width: 250px;
+}
+
+.button {
+    margin-left: 10px;
+    background-color: #00d1b2;
+    color: white;
+}
+
+.button:hover {
+    border: solid 1px #00d1b2;
+    outline: none;
+    color: white;
+    background-color: #0ec7ac;
+}
+
+.button:focus {
+    border: solid 1px #00d1b2;
+    outline: none;
+    color: white;
+    background-color: #00d1b2;
+}
+
+.button:active {
+    border: solid 1px #00d1b2;
+    outline: none;
+    color: white;
+    background-color: #04af95;
+
+}
+
+h4.handle-prefix {
+    display: inline;
+    line-height: 2;
+    margin-right: 5px;
+}
+
+.card-content {
+    min-height: 220px;
+    max-height: 500px;
+    overflow-y: scroll;
+}
+
+/** Defines an indeterminant progress bar (Bulma doesn't support this natively) **/
+.progress {
+  position: relative;
+  bottom: -50px;
+  background: #DBDBDB; }
+  .progress::-webkit-progress-bar {
+    background: transparent !important; }
+  .progress:indeterminate {
+    animation: progress-indeterminate 1.1s linear infinite;
+    background: #DBDBDB linear-gradient(to right, #4a4a4a 30%, #DBDBDB 30%) top left/150% 150% no-repeat; }
+    .progress:indeterminate::-moz-progress-bar {
+      background: transparent !important; }
+    .progress:indeterminate.is-primary {
+      background: #DBDBDB linear-gradient(to right, #00D1B2 30%, #DBDBDB 30%) top left/150% 150% no-repeat; }
+    .progress:indeterminate.is-link {
+      background: #DBDBDB linear-gradient(to right, #209CEE 30%, #DBDBDB 30%) top left/150% 150% no-repeat; }
+    .progress:indeterminate.is-info {
+      background: #DBDBDB linear-gradient(to right, #3273DC 30%, #DBDBDB 30%) top left/150% 150% no-repeat; }
+    .progress:indeterminate.is-success {
+      background: #DBDBDB linear-gradient(to right, #23D160 30%, #DBDBDB 30%) top left/150% 150% no-repeat; }
+    .progress:indeterminate.is-warning {
+      background: #DBDBDB linear-gradient(to right, #FFDD57 30%, #DBDBDB 30%) top left/150% 150% no-repeat; }
+    .progress:indeterminate.is-danger {
+      background: #DBDBDB linear-gradient(to right, #FF3860 30%, #DBDBDB 30%) top left/150% 150% no-repeat; }
+
+@keyframes progress-indeterminate {
+  0% {
+    background-position: 200% 0; }
+  100% {
+    background-position: -200% 0; } }
+
+.tweet-content {
+    padding-left: 0;
+}
+
+.columns {
+    margin-bottom: 0;
+
+}
+
+.tweet-container {
+    padding: 0 10px;
+    padding-top: 10px;
+    border-radius: 3px;
+    border: 1px solid grey;
+    box-shadow: 5px 10px #e5e5e5;
+}
+
+.tweet-container:hover {
+    cursor: pointer;
+    transition: all 0.18s ease;
+    transform: scale(1.03);
+}
+
+.body-label {
+    text-align: center;
+}
+
+.body-label h4 {
+    position: relative;
+    bottom: -40px;
+}

@@ -1,5 +1,9 @@
-facepy
+TwitterSearch
 flask
 flask-restful
+injector==0.12.0
+Flask-Injector
 pymongo
 Flask-PyMongo
+connexion
+fastavro
