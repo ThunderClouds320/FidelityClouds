@@ -21,7 +21,7 @@ class Body extends React.Component {
         let ifElseBodyLabel = "No tweets yet. Enter a handle to get started!";
 
         // Set the microservice engine label accordingly
-        if (this.props.twitter.tweets.length === 0) {
+        if (this.props.twitter.tweets.length !== 0) {
             ifElseBodyLabel = "Select a tweet to analyze:";
         }
 
