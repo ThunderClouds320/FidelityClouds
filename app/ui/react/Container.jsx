@@ -18,13 +18,12 @@ class Container extends React.Component {
 		this.fetchTweets = this.fetchTweets.bind(this);
 		this.analyzeTweet = this.analyzeTweet.bind(this);
 
-		// State template
+		// Initial state template
 		this.state = {selectedTab: 0,
 			          twitter: {
 			              handle: "realDonaldTrump",
 						  tweets: []
 					  }};
-
 	}
 
 	render() {
@@ -69,7 +68,7 @@ class Container extends React.Component {
      * Function that is executed when the handle name
      * in the input form is changed
      *
-     * @param handle (string): The handle name
+     * @param handle {string}: The handle name
      */
     onHandleChanged(handle) {
         const tweets = this.state.twitter.tweets;
@@ -85,6 +84,22 @@ class Container extends React.Component {
      */
     fetchTweets(handle, numTweets) {
 
+        /**
+         * Partitions an array into fixed-size slices
+         *
+         * @param arr {number}: The array to be partitioned
+         * @param size {number}: The number of elements in each array slice
+         *
+         * @returns {Array}: An partitioned array containing slices of length `size`
+         */
+        function chunkArrayInGroups(arr, size) {
+            let myArray = [];
+            for (let i = 0; i < arr.length; i += size) {
+                myArray.push(arr.slice(i, i+size));
+            }
+            return myArray;
+        }
+
         // Clear the previous tweets
         this.setState({twitter: {handle: handle, tweets: []}});
         $('.card-content').animate({height: 220}, 200);
@@ -99,6 +114,7 @@ class Container extends React.Component {
         console.log("Fetching tweets...");
 
         $.get(urlString, (data) => {
+
             const statusCode = data['status'];
             console.log("Found tweets...");
 
@@ -106,24 +122,12 @@ class Container extends React.Component {
             $('#progress').addClass('hide');
             $('.body-label h4').removeClass('hide');
 
+            /* Show an error modal if the request was unsuccessful */
             if (statusCode != 200) {
-                swal(
-                  'Oh no!',
-                  `<h2>${data['message']}</h2>`,
-                  'error'
-                )
+                swal('Oh no!',
+                     `<h2>${data['message']}</h2>`,
+                     'error');
             } else {
-
-                // Partition the tweets
-
-                function chunkArrayInGroups(arr, size) {
-                    let myArray = [];
-                    for(let i = 0; i < arr.length; i += size) {
-                        myArray.push(arr.slice(i, i+size));
-                    }
-                    return myArray;
-                }
-
                 this.setState({twitter: {handle: handle,
                                          tweets: chunkArrayInGroups(data['response'], 2)}});
                 console.log("state updated!");
@@ -136,9 +140,13 @@ class Container extends React.Component {
 
     /**
      * Runs a microservice analyzer over a given piece of text data
+     *
      * @param text: The text contained in the tweet
      */
     analyzeTweet(text) {
+
+        // Hardcoding is bad, we know. If there was more time we'd implement a dynamic
+        // way of determining the proper microservice endpoint
         let urlString = "http://localhost:5000/1.0/analyze/text";
 
         $.ajax({
@@ -148,12 +156,11 @@ class Container extends React.Component {
           dataType: 'json',
           contentType: 'application/json'
         }).done(function(data) {
+            console.log(data);
             const keywords = data['keywords'].length > 0 ? `<h2>The following keywords were found: ${data['keywords']}</h2>` : `<h2>There were no interesting keywords found.</h2>`
-            swal(
-                  'Done!',
-                  `<h2>The CLV for this tweet is: ${data['clv']}</h2><br />${keywords}`,
-                  'success'
-                );
+            swal('Done!',
+                 `<h2>The CLV for this tweet is: ${data['clv']}</h2><br />${keywords}`,
+                 'success');
         });
     }
 }

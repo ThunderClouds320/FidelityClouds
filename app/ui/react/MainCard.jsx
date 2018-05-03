@@ -16,6 +16,8 @@ class MainCard extends React.Component {
     }
 
     render() {
+        const tweets = this.props.twitter.tweets;
+
         const headerLabel = this.props.headerLabel;
         const handle = this.props.twitter.handle;
 
@@ -24,8 +26,8 @@ class MainCard extends React.Component {
 
         const dropdownClass = this.state.dropdown ? 'is-active' : '';
 
-        const numTweets = this.props.twitter.tweets.length;
-        const tweetStatusLabel =`${numTweets * 2} tweets loaded.`;
+        const numTweets = tweets.length === 0 ? 0 : tweets[tweets.length - 1].length + (tweets.length - 1) * 2;
+        const tweetStatusLabel =`${numTweets} tweets loaded.`;
 
         return (
             <div className="column">
